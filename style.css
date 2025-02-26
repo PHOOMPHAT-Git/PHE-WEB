@@ -12,12 +12,299 @@
     --black: #2e2e2e;
     --white: #fff;
     --gray: #7a7a7a;
+
+    --h: 240;
+    --s: 97%;
+    --l: 50%;
+    --surface-1: hsla(0, 0%, 19%, 0.349);
+    --surface-2: hsla(0, 0%, 30%, 0.705);
+    --surface-3: hsla(187, 62%, 42%, 0.5);
+    --text: hsl(var(--h) var(--s) 96%);
+    --text-alt: hsl(var(--h) var(--s) 85%);
+    --shadow-color: var(--h) var(--s) 15%;
+    --shadow-strength: 1%;
+    --shadow: 0 -2px 5px 0 hsl(var(--shadow-color) /
+            calc(var(--shadow-strength) + 2%)),
+      0 1px 1px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+      0 2px 2px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+      0 5px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)),
+      0 9px 9px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)),
+      0 16px 16px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 6%));
+    --space: 0.5rem;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+  
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #1a9cbdcc, #1a9cbd6b, #1a9cbd6b);
+    transition: background-color 0.3s;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+  
+@property --x {
+    syntax: "<percentage>";
+    initial-value: 35%;
+    inherits: false;
+}
+  
+@property --shine {
+    syntax: "<color>";
+    initial-value: transparent;
+    inherits: false;
+}
+  
+@property --shadow-strength {
+    syntax: "<percentage>";
+    initial-value: 0%;
+    inherits: false;
+}
+  
+* {
+    box-sizing: border-box;
 }
 
 html, body {
     margin: 0;
     padding: 0px;
+    user-select: none;
 }
+  
+body {
+    color: #ffffff;
+    background: black;
+    font-size: 1.125rem;
+    line-height: 1.4;
+    font-family: system-ui, sans-serif;
+    overflow-x: hidden;
+}
+  
+main {
+    display: grid;
+    gap: 35vh;
+}
+  
+.page-section {
+    container-type: inline-size;
+    display: grid;
+    gap: var(--space);
+    inline-size: min(var(--max, 30rem), 100%);
+    margin-inline: auto;
+}
+
+.page-headline {
+    --_margin: 10vh;
+    margin-block-start: var(--_margin);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  
+    &::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: var(--_margin);
+      margin-block-start: 0.8rem;
+      margin-inline: auto;
+      background: var(--surface-3);
+    }
+}
+  
+.page-footer {
+    margin-block-start: 0vh;
+    text-align: center;
+    padding: 1rem;
+  
+    h2 {
+      display: grid;
+    }
+  
+    h2::before {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 3rem;
+      margin-block-end: 0.5rem;
+      margin-inline: auto;
+      background: var(--surface-3);
+    }
+}
+  
+.icon {
+    width: 2.5rem;
+    height: auto;
+ }
+  
+.icon-sm {
+    width: 1.5rem;
+    color: var(--text-alt);
+}
+  
+.text-label {
+    font-size: 1em;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    z-index: 2;
+}
+  
+.author {
+    text-align: end;
+}
+  
+.cluster {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+  
+box-gleam {
+    --_gleam: linear-gradient(
+        115deg,
+        transparent 40%,
+        var(--surface-1),
+        transparent 70%
+      )
+      var(--x) 0 / 600% 100% padding-box;
+    --_gleam-cover: radial-gradient(
+        circle at center,
+        var(--surface-1),
+        transparent
+      )
+      padding-box;
+    --_cover: linear-gradient(var(--surface-1), var(--surface-1)) padding-box;
+    --_shine: conic-gradient(
+        from var(--angle),
+        var(--shine),
+        transparent 20% 80%,
+        var(--shine)
+      )
+      border-box;
+    --_edges: linear-gradient(
+        155deg,
+        var(--surface-3),
+        var(--surface-2) 20% 80%,
+        var(--surface-3)
+      )
+      border-box;
+
+    display: grid;
+    gap: var(--space);
+    position: relative;
+    padding: 1.6rem;
+    border-radius: 0.8rem;
+    border: 1px solid transparent;
+    box-shadow: var(--shadow);
+
+    background: var(--_gleam-cover), var(--_gleam), var(--_cover), var(--_shine), var(--_edges);
+
+    overflow: hidden;
+    position: relative;
+}
+
+box-gleam img {
+    opacity: 0.7;
+    max-width: 125%;
+    max-height: 125%;
+    position: absolute;
+    top: 75%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+@supports (animation-timeline: view()) {
+    box-gleam {
+      animation: linear both;
+      animation-name: gleam, shine, shadow;
+      animation-timeline: view();
+      animation-range: cover -10% cover 100%, entry 0% cover 65%,
+        entry 0% exit 150%;
+    }
+}
+  
+@media (prefers-reduced-motion: reduce) {
+    box-gleam {
+      animation: none !important;
+    }
+}
+  
+@keyframes gleam {
+    from {
+      --angle: -1turn;
+      --x: 0%;
+    }
+    to {
+      --angle: 1turn;
+      --x: 100%;
+    }
+}
+  
+@keyframes shadow {
+    from,
+    to {
+      box-shadow: none;
+    }
+    50%,
+    65% {
+      box-shadow: var(--shadow);
+    }
+}
+  
+@keyframes shine {
+    0%,
+    45% {
+      --shine: transparent;
+    }
+    80% {
+      --shine: hsl(var(--h) var(--s) calc(var(--l) + 38%));
+    }
+}
+  
+bento-grid {
+    display: grid;
+    gap: var(--space);
+  
+    > * {
+      display: grid;
+      place-items: center;
+      place-content: center;
+      text-align: center;
+      padding: 2.5rem;
+    }
+}
+  
+@container (inline-size > 35rem) {
+    bento-grid {
+      grid-template-columns: repeat(var(--col-count, 3), 1fr);
+      grid-template-rows: repeat(var(--row-count, 3), auto);
+  
+      > * {
+        grid-column: var(--col);
+        grid-row: var(--row);
+      }
+    }
+}
+  
+.browser-support-text {
+    display: none;
+}
+  
+@supports not (animation-timeline: view()) {
+    .browser-support-text {
+      display: block;
+      color: yellow;
+    }
+}  
 
 .text-container {
     z-index: 100;
@@ -124,9 +411,12 @@ html, body {
     }
 
     .gradients-container {
-        filter: url(#goo) blur(80px) ;
-        width: 100%;
-        height: 100%;
+        filter: url(#goo) blur(80px);
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
     }
 
     .g1 {
