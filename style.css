@@ -243,6 +243,7 @@ box-gleam img {
     left: 85%;
     transform: translate(-50%, -50%);
     z-index: 1;
+    pointer-events: none;
 }
 
 @supports (animation-timeline: view()) {
@@ -345,7 +346,7 @@ bento-grid {
     font-size: 5rem;
     text-shadow: 1px 1px rgba(88, 88, 88, 0.1);
     color: var(--black);
-    animation: colorChange 8s infinite alternate;
+    animation: colorChange 8s forwards;
 }
 
 .text-container-2 {
@@ -371,11 +372,8 @@ bento-grid {
     0% {
         color: var(--black);
     }
-    50% {
-        color: rgb(153, 153, 153);
-    }
     100% {
-        color: var(--black);
+        color: rgb(153, 153, 153);
     }
 }
 
