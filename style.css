@@ -235,7 +235,7 @@ html, body {
         height: 80vh;
         display: flex;
         position: absolute;
-        top: 150px;
+        top: 125px;
         left: 0;
         justify-content: center;
         align-items: center;
@@ -286,8 +286,8 @@ html, body {
 
         width: var(--circle-size);
         height: var(--circle-size);
-        top: calc(50% - var(--circle-size) / 2 + 200px);
-        left: calc(50% - var(--circle-size) / 2 - 500px);
+        top: calc(50% - var(--circle-size) / 2 + 400px);
+        left: calc(50% - var(--circle-size) / 2 - 800px);
 
         transform-origin: calc(50% + 600px);
         animation: moveInCircle 40s linear infinite;
@@ -321,7 +321,7 @@ html, body {
         top: calc(50% - var(--circle-size));
         left: calc(50% - var(--circle-size));
 
-        transform-origin: calc(50% - 800px) calc(50% + 200px);
+        transform-origin: calc(50% - 1200px) calc(50% + 500px);
         animation: moveInCircle 20s ease infinite;
 
         opacity: 0.7;
