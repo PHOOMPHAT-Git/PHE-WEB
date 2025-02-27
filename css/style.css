@@ -42,7 +42,7 @@
 }
   
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #1a9cbdcc, #1a9cbd6b, #1a9cbd6b);
+    background: linear-gradient(to bottom, #3a697552, #1a9cbdaf, #3a697552);
     transition: background-color 0.3s;
 }
 
@@ -340,7 +340,20 @@ bento-grid {
       display: block;
       color: yellow;
     }
-}  
+}
+
+.discord_login_button {
+    z-index: 200;
+    position: relative;
+    
+    span {
+        color: #fff;
+    }
+
+    i {
+        color: #fff;
+    }
+}
 
 .text-container {
     z-index: 100;
