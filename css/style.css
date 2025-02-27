@@ -232,7 +232,7 @@ box-gleam {
     border-radius: 0.8rem;
     border: 1px solid transparent;
     box-shadow: var(--shadow);
-    opacity: 0.8;
+    opacity: 0.7;
 
     background: var(--_gleam-cover), var(--_gleam), var(--_cover), var(--_shine), var(--_edges);
 
@@ -352,6 +352,16 @@ bento-grid {
 
     i {
         color: #fff;
+    }
+}
+
+#discord-widget {
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    #discord-widget {
+        max-width: 90%;
     }
 }
 
