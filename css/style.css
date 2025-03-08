@@ -607,7 +607,7 @@ bento-grid {
 
     box-gleam {
         max-width: 325px;
-        max-height: 125px;
+        max-height: 150px;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
