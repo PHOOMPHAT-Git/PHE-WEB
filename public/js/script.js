@@ -7,13 +7,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("username").textContent = user.username;
       document.getElementById("user-avatar").src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
 
-      const loginButton = document.querySelector(".discord-login-container");
-      if (loginButton) {
-          loginButton.style.display = "none";
-      }
+      document.querySelector(".user-header").style.display = "block";
+      document.querySelector(".discord-login-container").style.display = "none";
 
   } catch (error) {
       console.log("User not logged in.");
+      document.querySelector(".user-header").style.display = "none";
   }
 });
 
